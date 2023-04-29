@@ -10,17 +10,14 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class JiraIssueService {
-
     private final JiraIssueRepository issueRepository;
-
     public JiraIssue saveJiraIssue(JiraIssue issue){
         return issueRepository.insert(issue);
     }
-
     public List<JiraIssue> getAllIssues(){
         return issueRepository.findAll();
     }
-    public Page<JiraIssue> getAllJiraIssues(String projectName, Pageable paging){
-        return issueRepository.findByProjectName(projectName, paging);
+    public Page<JiraIssue> getAllIssuesPaging(Pageable paging){
+        return issueRepository.findAll(paging);
     }
 }

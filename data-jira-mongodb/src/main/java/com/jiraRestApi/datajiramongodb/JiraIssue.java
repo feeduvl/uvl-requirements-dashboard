@@ -11,13 +11,21 @@ public class JiraIssue {
     private String id;
     private String issueId;
     private String key;
-
     private String projectName;
 
-    public JiraIssue(String issueId, String key, String projectName) {
+    private String issueType;
+
+    public JiraIssue(String issueId, String key, String projectName, String issueType) {
         this.issueId = issueId;
         this.key = key;
         this.projectName = projectName;
+        this.issueType = issueType;
+    }
+    public String getIssueType() {
+        return issueType;
+    }
+    public void setIssueType(String issueType) {
+        this.issueType = issueType;
     }
 
     public String getIssueId() {
