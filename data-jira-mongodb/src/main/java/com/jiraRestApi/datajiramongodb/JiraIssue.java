@@ -12,9 +12,9 @@ public class JiraIssue {
     private String issueId;
     private String key;
     private String projectName;
-
     private String issueType;
 
+    public JiraIssue(){}
     public JiraIssue(String issueId, String key, String projectName, String issueType) {
         this.issueId = issueId;
         this.key = key;
