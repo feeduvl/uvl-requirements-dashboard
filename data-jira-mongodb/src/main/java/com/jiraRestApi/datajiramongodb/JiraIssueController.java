@@ -16,7 +16,7 @@ import java.util.*;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:8081")
+
 @RequestMapping("/api")
 public class JiraIssueController {
 
