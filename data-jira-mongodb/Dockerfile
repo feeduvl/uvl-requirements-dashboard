@@ -21,7 +21,7 @@ COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY settings-docker.xml /usr/share/maven/ref/
 
 ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
-WORKDIR /uvl-acceptance-criteria
+WORKDIR /uvl-requirements-dashboard
 COPY . .
 RUN _JAVA_OPTIONS="-Xmx2g" mvn package
 RUN mvn site
