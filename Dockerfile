@@ -56,10 +56,14 @@
 FROM maven:3-jdk-8-alpine AS build
 
 
-COPY target/uvl-requirements-dashboard-0.0.1-SNAPSHOT.jar app.jar
+
+
+COPY pom.xml /uvl-requirements-dashboard/pom.xml
 WORKDIR /uvl-requirements-dashboard
 RUN mvn clean
 RUN mvn package
+
+COPY ./target/uvl-requirements-dashboard-0.0.1-SNAPSHOT.jar app.jar
 
 ENV PORT 9645
 EXPOSE $PORT
