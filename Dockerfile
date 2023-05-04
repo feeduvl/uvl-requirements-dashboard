@@ -56,7 +56,7 @@
 FROM maven:3-jdk-8-alpine AS build
 
 
-COPY ./target/uvl-requirements-dashboard-0.0.1-SNAPSHOT.jar app.jar
+COPY target/uvl-requirements-dashboard-0.0.1-SNAPSHOT.jar app.jar
 WORKDIR /uvl-requirements-dashboard
 RUN mvn clean
 RUN mvn package
