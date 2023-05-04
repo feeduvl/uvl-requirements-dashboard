@@ -1,9 +1,5 @@
 FROM openjdk:20
-WORKDIR /uvl-requirements-dashboard
-COPY . .
-RUN _JAVA_OPTIONS="-Xmx2g" mvn package
-RUN mvn site
 
-EXPOSE 9645
-
-CMD ["app"]
+ARG JAR_FILE=target/*.jar
+COPY ./target/uvl-requirements-dashboard-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]
