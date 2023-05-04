@@ -1,12 +1,10 @@
-FROM openjdk:20
+FROM maven:3.8.6-eclipse-temurin-17-alpine AS build
+COPY src /Users/benja/IdeaProjects/Masterarbeit/uvl-requirements-dashboard/src
+COPY pom.xml /Users/benja/IdeaProjects/Masterarbeit/uvl-requirements-dashboard
+RUN mvn -f /Users/benja/IdeaProjects/Masterarbeit/uvl-requirements-dashboard/pom.xml clean package
 
-#COPY pom.xml /uvl-requirements-dashboard/pom.xml
-#WORKDIR /uvl-requirements-dashboard
-#COPY . .
-#RUN mvn clean
-#RUN mvn package
 
-ARG JAR_FILE=target/*.jar
-COPY ./target/uvl-requirements-dashboard-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 9645
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:17-jdk-oracle
+COPY --from=build /Users/benja/IdeaProjects/Masterarbeit/uvl-requirements-dashboard/target/uvl-requirements-dashboard-0.0.1-SNAPSHOT.jar demo.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","demo.jar"]
