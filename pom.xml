@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jiraRestApi</groupId>
-	<artifactId>data-jira-mongodb</artifactId>
+	<artifactId>uvl-requirements-dashboard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>data-jira-mongodb</name>
+	<name>uvl-requirements-dashboard</name>
 	<description>Save Jira Issues in Mongodb</description>
 	<properties>
 		<java.version>20</java.version>
