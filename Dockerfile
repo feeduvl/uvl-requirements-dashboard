@@ -5,7 +5,7 @@ FROM maven:3-jdk-8-alpine AS build
 WORKDIR /uvl-requirements-dashboard
 
 COPY . .
-RUN mvn clean package -DskipTests
+RUN _JAVA_OPTIONS="-Xmx2g" mvn package
 
 
 
