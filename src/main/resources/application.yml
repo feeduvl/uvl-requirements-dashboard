@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      database: Jira-issues
+      host: javamongo
+      port: 27017

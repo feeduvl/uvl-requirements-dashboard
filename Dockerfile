@@ -6,5 +6,5 @@ RUN mvn -f /Users/benja/IdeaProjects/Masterarbeit/uvl-requirements-dashboard/pom
 
 FROM openjdk:17-jdk-oracle
 COPY --from=build /Users/benja/IdeaProjects/Masterarbeit/uvl-requirements-dashboard/target/uvl-requirements-dashboard-0.0.1-SNAPSHOT.jar demo.jar
-EXPOSE 8080
+EXPOSE 9645
 ENTRYPOINT ["java","-jar","demo.jar"]
