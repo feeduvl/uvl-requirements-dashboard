@@ -1,0 +1,5 @@
+com\jiraRestApi\datajiramongodb\JiraIssue.class
+com\jiraRestApi\datajiramongodb\JiraIssueRepository.class
+com\jiraRestApi\datajiramongodb\JiraIssueController.class
+com\jiraRestApi\datajiramongodb\DataJiraMongodbApplication.class
+com\jiraRestApi\datajiramongodb\JiraIssueService.class
