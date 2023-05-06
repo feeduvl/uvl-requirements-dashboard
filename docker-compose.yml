@@ -16,7 +16,7 @@ services:
 #    environment:
 #      - ME_CONFIG_MONGODB_SERVER=mongodb
   springboot-mongodb:
-    image: jira-dashboard
+    image: uvl-requirements-dashboard
     container_name: "springboot-mongodb"
     ports:
       - 9645:8080

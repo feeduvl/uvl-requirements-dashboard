@@ -2,5 +2,5 @@ spring:
   data:
     mongodb:
       database: Jira-issues
-      host: mongodb
+      host: feed-uvl.ifi.uni-heidelberg.de
       port: 27017
