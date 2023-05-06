@@ -19,7 +19,7 @@ services:
     image: uvl-requirements-dashboard
     container_name: "springboot-mongodb"
     ports:
-      - 8080:8080
+      - 9645:8080
     links:
       - jiramongodb
 #volumes:
