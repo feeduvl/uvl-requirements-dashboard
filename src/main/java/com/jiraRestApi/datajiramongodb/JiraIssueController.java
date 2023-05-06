@@ -17,7 +17,7 @@ import java.util.*;
 @RestController
 @AllArgsConstructor
 //@CrossOrigin(origins = "http://localhost:8081")
-@RequestMapping("/api")
+@RequestMapping("/hitec/jira")
 public class JiraIssueController {
 
     private final JiraIssueService jiraIssueService;
