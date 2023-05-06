@@ -1,8 +1,8 @@
 version: "3"
 services:
-  mongodb:
+  jiramongodb:
     image: mongo:latest
-    container_name: mongodb
+    container_name: "jiramongodb"
     ports:
       - 27017:27017
 #    volumes:
@@ -19,9 +19,9 @@ services:
     image: uvl-requirements-dashboard
     container_name: "springboot-mongodb"
     ports:
-      - 9645:8080
+      - 8080:8080
     links:
-      - mongodb
+      - jiramongodb
 #volumes:
 #  data: {}
 #
