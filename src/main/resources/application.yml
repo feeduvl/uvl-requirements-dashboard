@@ -2,5 +2,5 @@ spring:
   data:
     mongodb:
       database: Jira-issues
-      host: javamongo
+      host: mongodb
       port: 27017

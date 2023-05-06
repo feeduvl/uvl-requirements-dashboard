@@ -1,15 +1,30 @@
 version: "3"
 services:
-  javamongo:
+  mongodb:
     image: mongo:latest
-    container_name: "javamongo"
+    container_name: mongodb
     ports:
       - 27017:27017
+#    volumes:
+#      - data:/data
+#  mongo-express:
+#    image: mongo-express
+#    container_name: mongo-express
+#    restart: always
+#    ports:
+#      - 8081:8081
+#    environment:
+#      - ME_CONFIG_MONGODB_SERVER=mongodb
   springboot-mongodb:
-    image: springboot-mongodb:1.0
+    image: jira-dashboard
     container_name: "springboot-mongodb"
-    restart: always
     ports:
-      - 8080:8080
+      - 9645:8080
     links:
-      - javamongo
+      - mongodb
+#volumes:
+#  data: {}
+#
+#networks:
+#  default:
+#    name: mongodb_network
