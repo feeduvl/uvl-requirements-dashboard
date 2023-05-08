@@ -38,7 +38,6 @@ ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 WORKDIR /uvl-acceptance-criteria
 COPY . .
 RUN _JAVA_OPTIONS="-Xmx2g" mvn package
-RUN mvn site
 
 ARG codecov_secret
 RUN curl -s https://codecov.io/bash >> ./codecov
