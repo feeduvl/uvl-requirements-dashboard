@@ -1,8 +1,8 @@
 version: "3"
 services:
-  jiramongodb:
+  mongo:
     image: mongo:latest
-    container_name: "jiramongodb"
+    container_name: "mongo"
     ports:
       - 27017:27017
 #    volumes:
@@ -21,7 +21,7 @@ services:
     ports:
       - 9645:8080
     links:
-      - jiramongodb
+      - mongo
 #volumes:
 #  data: {}
 #
