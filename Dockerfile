@@ -3,8 +3,6 @@ COPY src /Users/benja/IdeaProjects/Masterarbeit/uvl-requirements-dashboard/src
 COPY pom.xml /Users/benja/IdeaProjects/Masterarbeit/uvl-requirements-dashboard
 
 COPY settings-docker.xml /usr/share/maven/ref/
-
-#ENTRYPOINT ["/usr/local/bin/mvnw"]
 WORKDIR /uvl-requirements-dashboard
 COPY . .
 
