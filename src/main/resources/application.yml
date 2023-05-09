@@ -1,5 +1,5 @@
-#server:
-#  port: 9645
+server:
+  port: 9645
 spring:
   data:
     mongodb:
