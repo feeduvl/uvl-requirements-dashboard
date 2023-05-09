@@ -19,7 +19,7 @@ services:
     image: uvl-requirements-dashboard
     container_name: "springboot-mongodb"
     ports:
-      - 9645:9645
+      - 9645:8080
     links:
       - mongo
 #volumes:
