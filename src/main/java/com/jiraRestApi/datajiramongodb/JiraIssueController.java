@@ -16,7 +16,7 @@ import java.util.*;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "https://feed-uvl.ifi.uni-heidelberg.de:9707")
+@CrossOrigin(origins = "http://feed-uvl.ifi.uni-heidelberg.de:9707")
 @RequestMapping("/hitec/jira")
 public class JiraIssueController {
 
