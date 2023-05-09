@@ -1,9 +1,4 @@
 server:
-#  ssl:
-#    key-alias: spring-jira
-#    key-store: classpath:jira.jks
-#    key-store-type: JKS
-#    key-store-password: password
   port: 9645
 
 spring:
