@@ -16,7 +16,6 @@ import java.util.*;
 
 @RestController
 @AllArgsConstructor
-//@CrossOrigin(origins = "https://feed-uvl.ifi.uni-heidelberg.de:9707")
 @RequestMapping("/hitec/jira")
 public class JiraIssueController {
 
@@ -32,10 +31,12 @@ public class JiraIssueController {
         int totalIssues = Integer.parseInt(response.getBody().getObject().getString("total"));
         List<JiraIssue> list = new ArrayList<>();
         for(int i = 0; i < totalIssues; i ++) {
-            String id = response.getBody().getObject().getJSONArray("issues").getJSONObject(i).getString("id");
+//            String id = response.getBody().getObject().getJSONArray("issues").getJSONObject(i).getString("id");
             String key = response.getBody().getObject().getJSONArray("issues").getJSONObject(i).getString("key");
             String issueTyp = response.getBody().getObject().getJSONArray("issues").getJSONObject(i).getJSONObject("fields").getJSONObject("issuetype").getString("name");
-            JiraIssue issue = new JiraIssue(id, key, projectName, issueTyp);
+            String projectname = response.getBody().getObject().getJSONArray("issues").getJSONObject(i).getJSONObject("fields").getJSONObject("project").getString("name");
+            String summary = response.getBody().getObject().getJSONArray("issues").getJSONObject(i).getJSONObject("fields").getString("summary");
+            JiraIssue issue = new JiraIssue(key, issueTyp, projectname, summary);
             list.add(issue);
         }
         return list;
@@ -46,11 +47,11 @@ public class JiraIssueController {
         JSONObject js = new JSONObject(data);
         int size = js.getJSONArray("jsonObject").length();
         for (int i = 0; i < size; i++ ){
-            String issueId = js.getJSONArray("jsonObject").getJSONObject(i).getString("issueId");
             String key = js.getJSONArray("jsonObject").getJSONObject(i).getString("key");
             String projectName = js.getJSONArray("jsonObject").getJSONObject(i).getString("projectName");
             String issueType = js.getJSONArray("jsonObject").getJSONObject(i).getString("issueType");
-            JiraIssue jiraIssue = new JiraIssue(issueId, key, projectName, issueType);
+            String summary = js.getJSONArray("jsonObject").getJSONObject(i).getString("summary");
+            JiraIssue jiraIssue = new JiraIssue(key, issueType, projectName, summary);
             Boolean alreadyUsed = false;
             if(jiraIssues.isEmpty()){
                 jiraIssueService.saveJiraIssue(jiraIssue);
