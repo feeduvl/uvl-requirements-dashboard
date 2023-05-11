@@ -1,5 +1,7 @@
-package com.jiraRestApi.datajiramongodb;
+package com.jiraRestApi.datajiramongodb.services;
 
+import com.jiraRestApi.datajiramongodb.JiraIssue;
+import com.jiraRestApi.datajiramongodb.repositories.JiraIssueRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,5 +21,9 @@ public class JiraIssueService {
     }
     public Page<JiraIssue> getAllIssuesPaging(Pageable paging){
         return issueRepository.findAll(paging);
+    }
+
+    public void dropCollection(){
+        this.issueRepository.deleteAll();
     }
 }

@@ -1,7 +1,7 @@
 package com.jiraRestApi.datajiramongodb;
 
-import kong.unirest.HttpStatus;
-import org.apache.maven.wagon.repository.Repository;
+import com.jiraRestApi.datajiramongodb.controller.JiraIssueController;
+import com.jiraRestApi.datajiramongodb.services.JiraIssueService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,8 +11,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.validation.ObjectError;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +19,6 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @SpringBootTest
 class JiraIssueControllerTest {
@@ -50,7 +47,7 @@ class JiraIssueControllerTest {
         issues.add(jiraIssue);
         Map<String, Object> map = new HashMap<>();
         map.put("jsonObject", issues);
-        List<JiraIssue> jiraIssueList = jiraIssueController.saveJiraIssues(map);
+        List<JiraIssue> jiraIssueList = jiraIssueController.importJiraIssues(map);
         List<JiraIssue> emptyList = new ArrayList<>();
         assertEquals(emptyList, jiraIssueList);
     }
