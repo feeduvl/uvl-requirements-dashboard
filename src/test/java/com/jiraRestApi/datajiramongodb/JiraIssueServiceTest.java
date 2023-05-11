@@ -29,13 +29,13 @@ class JiraIssueServiceTest {
     @MockBean
     JiraIssueRepository jiraIssueRepository;
 
-    private final String issueId = "1";
+    private final String summary = "test";
     private final String key = "key";
     private final String projectName = "project";
     private final String issueType = "Epic";
     @Test
     void saveJiraIssue() {
-        JiraIssue jiraIssue = new JiraIssue(issueId, key, projectName, issueType);
+        JiraIssue jiraIssue = new JiraIssue(key, issueType, projectName, summary);
         when(jiraIssueRepository.insert(jiraIssue)).thenReturn(jiraIssue);
         JiraIssue issue = jiraIssueService.saveJiraIssue(jiraIssue);
         assertEquals("key", issue.getKey());
@@ -43,7 +43,7 @@ class JiraIssueServiceTest {
 
     @Test
     void getAllIssues() {
-        JiraIssue jiraIssue = new JiraIssue(issueId, key, projectName, issueType);
+        JiraIssue jiraIssue = new JiraIssue(key, issueType, projectName, summary);
         List<JiraIssue> list = new ArrayList<>();
         list.add(jiraIssue);
         when(jiraIssueRepository.findAll()).thenReturn(list);
@@ -53,7 +53,7 @@ class JiraIssueServiceTest {
 
     @Test
     void getAllIssuesPaging() {
-        JiraIssue jiraIssue = new JiraIssue(issueId, key, projectName, issueType);
+        JiraIssue jiraIssue = new JiraIssue(key, issueType, projectName, summary);
         List<JiraIssue> list = new ArrayList<>();
         list.add(jiraIssue);
         Page<JiraIssue> page = new PageImpl<>(list);
