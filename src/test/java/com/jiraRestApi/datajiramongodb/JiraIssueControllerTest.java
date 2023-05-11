@@ -32,7 +32,7 @@ class JiraIssueControllerTest {
     @MockBean
     JiraIssueService jiraIssueService;
 
-    private final String issueId = "1";
+    private final String summary = "test";
     private final String key = "key";
     private final String projectName = "project";
     private final String issueType = "Epic";
@@ -44,7 +44,7 @@ class JiraIssueControllerTest {
 
     @Test
     void saveJiraIssues() {
-        JiraIssue jiraIssue = new JiraIssue(issueId, key, projectName, issueType);
+        JiraIssue jiraIssue = new JiraIssue(key, issueType, projectName, summary);
         when(jiraIssueService.saveJiraIssue(any())).thenReturn(jiraIssue);
         List<JiraIssue> issues = new ArrayList<>();
         issues.add(jiraIssue);
@@ -58,7 +58,7 @@ class JiraIssueControllerTest {
     @Test
     void getAllJiraIssuesfromDB() {
         Pageable paging = PageRequest.of(0, 2);
-        JiraIssue jiraIssue = new JiraIssue(issueId, key, projectName, issueType);
+        JiraIssue jiraIssue = new JiraIssue(key, issueType, projectName, summary);
         List<JiraIssue> issues = new ArrayList<>();
         issues.add(jiraIssue);
         Page<JiraIssue> page = new PageImpl<>(issues);
