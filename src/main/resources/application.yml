@@ -4,6 +4,6 @@ server:
 spring:
   data:
     mongodb:
-      database: Jira-issues
+      database: jira-issues
       host: mongo
       port: 27017

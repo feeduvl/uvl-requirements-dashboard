@@ -42,9 +42,10 @@ public class JiraIssueController {
                 if(list.isEmpty()){
                     list.add(issueTyp);
                 }else{
-                    for(int j = 0; j < list.size(); j++ ){
-                        if(list.get(j).equals(issueTyp)){
+                    for (String s : list) {
+                        if (s.equals(issueTyp)) {
                             alreadyUsed = true;
+                            break;
                         }
                     }
                     if(!alreadyUsed){
@@ -62,11 +63,13 @@ public class JiraIssueController {
         JiraProject jiraProject = new JiraProject(projectName);
         boolean alreadySaved = false;
         if(jiraProjects.isEmpty()){
+            jiraProjectRepository.insert(new JiraProject("-"));
             jiraProjectRepository.insert(jiraProject);
         }else{
-            for(int i = 0; i < jiraProjects.size(); i++){
-                if(projectName.equals(jiraProjects.get(i).getName())){
+            for (JiraProject project : jiraProjects) {
+                if (projectName.equals(project.getName())) {
                     alreadySaved = true;
+                    break;
                 }
             }
             if(!alreadySaved){
@@ -129,12 +132,12 @@ public class JiraIssueController {
             String issueType = js.getJSONArray("jsonObject").getJSONObject(i).getString("issueType");
             String summary = js.getJSONArray("jsonObject").getJSONObject(i).getString("summary");
             JiraIssue jiraIssue = new JiraIssue(key, issueType, projectName, summary);
-            Boolean alreadyUsed = false;
+            boolean alreadyUsed = false;
             if(jiraIssues.isEmpty()){
                 jiraIssueService.saveJiraIssue(jiraIssue);
             }else{
-                for(int j =0; j < jiraIssues.size(); j++){
-                    if(jiraIssue.getKey().equals(jiraIssues.get(j).getKey())){
+                for (JiraIssue issue : jiraIssues) {
+                    if (jiraIssue.getKey().equals(issue.getKey())) {
                         alreadyUsed = true;
                         break;
                     }
@@ -150,13 +153,12 @@ public class JiraIssueController {
     @GetMapping("/issues/all")
     public ResponseEntity<Map<String, Object>> getAllJiraIssuesfromDB(@RequestParam int page, @RequestParam int size){
         try{
-            List<JiraIssue> issues = new ArrayList<>();
             if(size == -1){
                 size = jiraIssueService.getAllIssues().size();
             }
             Pageable paging = PageRequest.of(page-1, size);
             Page<JiraIssue> pageIssues = jiraIssueService.getAllIssuesPaging(paging);
-            issues = pageIssues.getContent();
+            List<JiraIssue> issues = pageIssues.getContent();
             Map<String, Object> res = new HashMap<>();
             res.put("issues", issues);
             res.put("currentPage", pageIssues.getNumber());
