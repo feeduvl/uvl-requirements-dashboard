@@ -15,7 +15,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.*;
 
 @RestController
@@ -152,6 +151,9 @@ public class JiraIssueController {
     public ResponseEntity<Map<String, Object>> getAllJiraIssuesfromDB(@RequestParam int page, @RequestParam int size){
         try{
             List<JiraIssue> issues = new ArrayList<>();
+            if(size == -1){
+                size = jiraIssueService.getAllIssues().size();
+            }
             Pageable paging = PageRequest.of(page-1, size);
             Page<JiraIssue> pageIssues = jiraIssueService.getAllIssuesPaging(paging);
             issues = pageIssues.getContent();
