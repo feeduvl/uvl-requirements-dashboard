@@ -7,3 +7,7 @@ spring:
       database: jira-issues
       host: mongo
       port: 27017
+
+jira:
+  username: ""
+  password: ""

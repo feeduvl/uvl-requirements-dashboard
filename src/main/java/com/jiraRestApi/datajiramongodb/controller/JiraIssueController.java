@@ -9,6 +9,7 @@ import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import kong.unirest.json.JSONObject;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,14 +25,17 @@ public class JiraIssueController {
 
     private final JiraIssueService jiraIssueService;
     private final JiraProjectRepository jiraProjectRepository;
+    @Autowired
+    private final JiraConfiguration jiraConfiguration;
 
     @GetMapping("/issues/load/issueTypes/{projectName}")
     public List<String> loadIssueTypesFromJiraIssues(@PathVariable String projectName){
         List<String> list = new ArrayList<>();
+        System.out.println(jiraConfiguration.username() + ""+ jiraConfiguration.password());
         try {
             String uri = String.format("https://jira-se.ifi.uni-heidelberg.de/rest/api/2/search?jql=project=%s&maxResults=10000", projectName);
             HttpResponse<JsonNode> response = Unirest.get(uri)
-                    .basicAuth("btuna", "zCZegf00")
+                    .basicAuth(jiraConfiguration.username(), jiraConfiguration.password())
                     .header("Accept", "application/json")
                     .asJson();
             setNewProjectNames(response.getBody().getObject().getJSONArray("issues").getJSONObject(0).getJSONObject("fields").getJSONObject("project").getString("name"));
