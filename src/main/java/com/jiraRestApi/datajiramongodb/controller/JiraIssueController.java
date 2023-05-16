@@ -31,7 +31,6 @@ public class JiraIssueController {
     @GetMapping("/issues/load/issueTypes/{projectName}")
     public List<String> loadIssueTypesFromJiraIssues(@PathVariable String projectName){
         List<String> list = new ArrayList<>();
-        System.out.println(jiraConfiguration.username() + ""+ jiraConfiguration.password());
         try {
             String uri = String.format("https://jira-se.ifi.uni-heidelberg.de/rest/api/2/search?jql=project=%s&maxResults=10000", projectName);
             HttpResponse<JsonNode> response = Unirest.get(uri)
@@ -93,7 +92,7 @@ public class JiraIssueController {
         for(String issueType : issueTypes) {
             String uri = String.format("https://jira-se.ifi.uni-heidelberg.de/rest/api/2/search?jql=project=%s AND issuetype = '%s'&maxResults=520", projectName, issueType);
             HttpResponse<JsonNode> response = Unirest.get(uri)
-                    .basicAuth("btuna", "zCZegf00")
+                    .basicAuth(jiraConfiguration.username(), jiraConfiguration.password())
                     .header("Accept", "application/json")
                     .asJson();
             int totalIssues = Integer.parseInt(response.getBody().getObject().getString("total"));
@@ -115,7 +114,6 @@ public class JiraIssueController {
         JSONObject js = new JSONObject(data);
         int size = js.getJSONArray("jsonObject").length();
         for (int i = 0; i < size; i++ ){
-
             String key = js.getJSONArray("jsonObject").getJSONObject(i).getString("key");
             String projectName = js.getJSONArray("jsonObject").getJSONObject(i).getString("projectName");
             String issueType = js.getJSONArray("jsonObject").getJSONObject(i).getString("issueType");
